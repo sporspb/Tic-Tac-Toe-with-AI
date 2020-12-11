@@ -3,3 +3,6 @@ content:
 - Greedy load balance
 - Html Parser
 - Compact strings with AsciiCharSequence
+- An anonymous class with three methods
+- Returning values from an anonymous class
+- Output names of the methods
