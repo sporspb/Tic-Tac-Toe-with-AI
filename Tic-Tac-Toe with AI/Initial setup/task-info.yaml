@@ -57,8 +57,7 @@ files:
             field = new FieldState[3][3];
             for (int row = 0; row < 3; row++) {
                 for (int col = 0; col < 3; col++) {
-                    field[row][col] =
-                        FieldState.get(str.charAt(((2 - row) * 3 + col)));
+                    field[row][col] = FieldState.get(str.charAt((row * 3 + col)));
                 }
             }
         }
@@ -127,7 +126,7 @@ files:
 
                 FieldState[][] field = new FieldState[3][3];
 
-                int y = 2;
+                int y = 0;
                 for (String line : lines) {
                     char[] cols = new char[] {
                         line.charAt(2),
@@ -144,7 +143,7 @@ files:
                         field[y][x] = state;
                         x++;
                     }
-                    y--;
+                    y++;
                 }
 
                 return new TicTacToeField(field);
@@ -239,48 +238,48 @@ files:
         public List<TestCase<Clue>> generate() {
             return List.of(
                 new TestCase<Clue>()
-                    .setInput("_XXOO_OX_\n1 3")
+                    .setInput("_XXOO_OX_\n1 1")
                     .setAttach(new Clue(
                         "_XXOO_OX_", "XXXOO_OX_", "X wins")),
 
                 new TestCase<Clue>()
-                    .setInput("_XXOO_OX_\n1 1\n1 3")
+                    .setInput("_XXOO_OX_\n1 3\n1 1")
                     .setAttach(new Clue(
                         "_XXOO_OX_", "XXXOO_OX_", "X wins",
                         "This cell is occupied! Choose another one!")),
 
                 new TestCase<Clue>()
-                    .setInput("_XXOO_OX_\n1 4\n1 3")
+                    .setInput("_XXOO_OX_\n1 4\n1 1")
                     .setAttach(new Clue(
                         "_XXOO_OX_", "XXXOO_OX_", "X wins",
                         "Coordinates should be from 1 to 3!")),
 
                 new TestCase<Clue>()
-                    .setInput("_XXOO_OX_\none\n1 3")
+                    .setInput("_XXOO_OX_\none\n1 1")
                     .setAttach(new Clue(
                         "_XXOO_OX_", "XXXOO_OX_", "X wins",
                         "You should enter numbers!")),
 
                 new TestCase<Clue>()
-                    .setInput("_XXOO_OX_\none three\n1 3")
+                    .setInput("_XXOO_OX_\none three\n1 1")
                     .setAttach(new Clue(
                         "_XXOO_OX_", "XXXOO_OX_", "X wins",
                         "You should enter numbers!")),
 
                 new TestCase<Clue>()
-                    .setInput("_XXOO_OX_\n3 2")
+                    .setInput("_XXOO_OX_\n2 3")
                     .setAttach(new Clue(
                         "_XXOO_OX_", "_XXOOXOX_", "Game not finished")),
 
                 new TestCase<Clue>()
-                    .setInput("_XXOO_OX_\n3 1")
+                    .setInput("_XXOO_OX_\n3 3")
                     .setAttach(new Clue(
                         "_XXOO_OX_", "_XXOO_OXX", "Game not finished")),
 
 
 
                 new TestCase<Clue>()
-                    .setInput("OXXXOOOX_\n3 1")
+                    .setInput("OXXXOOOX_\n3 3")
                     .setAttach(new Clue(
                         "OXXXOOOX_", "OXXXOOOXX", "Draw")),
 
@@ -288,12 +287,12 @@ files:
 
 
                 new TestCase<Clue>()
-                    .setInput("XX_XOXOO_\n3 3")
+                    .setInput("XX_XOXOO_\n1 3")
                     .setAttach(new Clue(
                         "XX_XOXOO_", "XXOXOXOO_", "O wins")),
 
                 new TestCase<Clue>()
-                    .setInput("XX_XOXOO_\n3 1")
+                    .setInput("XX_XOXOO_\n3 3")
                     .setAttach(new Clue(
                         "XX_XOXOO_", "XX_XOXOOO", "O wins")),
 
@@ -301,27 +300,27 @@ files:
 
 
                 new TestCase<Clue>()
-                    .setInput("_XO_OX___\n1 3")
+                    .setInput("_XO_OX___\n1 1")
                     .setAttach(new Clue(
                         "_XO_OX___", "XXO_OX___", "Game not finished")),
 
                 new TestCase<Clue>()
-                    .setInput("_XO_OX___\n1 2")
+                    .setInput("_XO_OX___\n2 1")
                     .setAttach(new Clue(
                         "_XO_OX___", "_XOXOX___", "Game not finished")),
 
                 new TestCase<Clue>()
-                    .setInput("_XO_OX___\n1 1")
+                    .setInput("_XO_OX___\n3 1")
                     .setAttach(new Clue(
                         "_XO_OX___", "_XO_OXX__", "Game not finished")),
 
                 new TestCase<Clue>()
-                    .setInput("_XO_OX___\n2 1")
+                    .setInput("_XO_OX___\n3 2")
                     .setAttach(new Clue(
                         "_XO_OX___", "_XO_OX_X_", "Game not finished")),
 
                 new TestCase<Clue>()
-                    .setInput("_XO_OX___\n3 1")
+                    .setInput("_XO_OX___\n3 3")
                     .setAttach(new Clue(
                         "_XO_OX___", "_XO_OX__X", "Game not finished")),
 
@@ -329,44 +328,43 @@ files:
 
 
                 new TestCase<Clue>()
-                    .setInput("_XO_OX__X\n1 3")
+                    .setInput("_XO_OX__X\n1 1")
                     .setAttach(new Clue(
                         "_XO_OX__X", "OXO_OX__X", "Game not finished")),
 
                 new TestCase<Clue>()
-                    .setInput("_XO_OX__X\n1 2")
+                    .setInput("_XO_OX__X\n2 1")
                     .setAttach(new Clue(
                         "_XO_OX__X", "_XOOOX__X", "Game not finished")),
 
                 new TestCase<Clue>()
-                    .setInput("_XO_OX__X\n1 1")
+                    .setInput("_XO_OX__X\n3 1")
                     .setAttach(new Clue(
                         "_XO_OX__X", "_XO_OXO_X", "O wins")),
 
                 new TestCase<Clue>()
-                    .setInput("_XO_OX__X\n2 1")
+                    .setInput("_XO_OX__X\n3 2")
                     .setAttach(new Clue(
                         "_XO_OX__X", "_XO_OX_OX", "Game not finished")),
 
 
 
-
                 new TestCase<Clue>()
-                    .setInput("XO_OXOX__\n3 3")
+                    .setInput("XO_OXOX__\n1 3")
                     .setAttach(new Clue(
                         "XO_OXOX__", "XOXOXOX__", "X wins")),
 
                 new TestCase<Clue>()
-                    .setInput("XO_OXOX__\n2 1")
+                    .setInput("XO_OXOX__\n3 2")
                     .setAttach(new Clue(
                         "XO_OXOX__", "XO_OXOXX_", "Game not finished")),
 
                 new TestCase<Clue>()
-                    .setInput("XO_OXOX__\n3 1")
+                    .setInput("XO_OXOX__\n3 3")
                     .setAttach(new Clue(
                         "XO_OXOX__", "XO_OXOX_X", "X wins"))
 
-                );
+            );
         }
 
         @Override
